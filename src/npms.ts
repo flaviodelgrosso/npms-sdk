@@ -8,7 +8,7 @@ import type {
   SuggestionResult,
   SuggestionsOptions,
 } from './types/search.ts';
-import { type SearchQueryModifiers, buildSearchQueryWithModifiers } from './utils/modifiers.ts';
+import { type SearchQueryModifiers, buildSearchQueryWithModifiers } from './utils/query.ts';
 
 const DEFAULT_API_URL = 'https://api.npms.io/v2';
 

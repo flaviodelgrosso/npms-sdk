@@ -1,7 +1,7 @@
 import { strictEqual } from 'node:assert';
 import { describe, test } from 'node:test';
 
-import { buildSearchQueryWithModifiers } from '../src/utils/modifiers.ts';
+import { buildSearchQueryWithModifiers } from '../src/utils/query.ts';
 
 describe('buildSearchQueryWithModifiers', () => {
   test('should build search query with modifiers', () => {

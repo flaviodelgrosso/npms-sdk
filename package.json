@@ -1,7 +1,7 @@
 {
   "name": "npms-io",
   "version": "1.0.0",
-  "description": "A TypeScript client library for the npms.io API.",
+  "description": "A fully type-safe client library for the npms.io API.",
   "author": "Flavio Del Grosso",
   "license": "ISC",
   "type": "module",

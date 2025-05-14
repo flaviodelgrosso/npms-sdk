@@ -4,5 +4,5 @@
     "rootDir": "src",
     "declaration": true
   },
-  "exclude": ["test/**/*.ts", "src/types/**/*.ts"]
+  "exclude": ["test/**/*.ts"]
 }
