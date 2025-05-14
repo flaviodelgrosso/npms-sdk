@@ -8,6 +8,11 @@
   "main": "dist/main.js",
   "files": ["dist"],
   "keywords": ["npms.io", "nodejs", "search", "package", "api", "client", "typescript"],
+  "homepage": "https://github.com/flaviodelgrosso/npms-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flaviodelgrosso/npms-sdk.git"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
