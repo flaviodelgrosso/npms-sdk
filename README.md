@@ -1,9 +1,9 @@
 # Npms.io TypeScript Client
 
 [![NPM
-version](https://img.shields.io/npm/v/npms-sdk.svg?style=flat)](https://www.npmjs.com/package/npmsio-client)
+version](https://img.shields.io/npm/v/npms-sdk.svg?style=flat)](https://www.npmjs.com/package/npms-sdk)
 [![NPM
-downloads](https://img.shields.io/npm/dm/npms-sdk.svg?style=flat)](https://www.npmjs.com/package/npmsio-client)
+downloads](https://img.shields.io/npm/dm/npms-sdk.svg?style=flat)](https://www.npmjs.com/package/npms-sdk)
 [![CI](https://github.com/flaviodelgrosso/npms-sdk/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/flaviodelgrosso/npms-sdk/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/flaviodelgrosso/npms-sdk/graph/badge.svg?token=FAWWPSCT1S)](https://codecov.io/gh/flaviodelgrosso/npms-sdk)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
