@@ -1,13 +1,23 @@
 {
   "name": "npms-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fully type-safe client library for the npms.io API.",
   "author": "Flavio Del Grosso",
   "license": "ISC",
   "type": "module",
   "main": "dist/main.js",
-  "files": ["dist"],
-  "keywords": ["npms.io", "nodejs", "search", "package", "api", "client", "typescript"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "npms.io",
+    "nodejs",
+    "search",
+    "package",
+    "api",
+    "client",
+    "typescript"
+  ],
   "homepage": "https://github.com/flaviodelgrosso/npms-sdk#readme",
   "repository": {
     "type": "git",
