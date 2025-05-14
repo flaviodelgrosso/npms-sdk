@@ -8,7 +8,7 @@ export type PackageInfo = {
   /** The package score */
   score: Score;
   /** The error associated with the last analyze attempt */
-  error?: Error;
+  error?: PackageError;
 };
 
 type Badge = {
@@ -34,9 +34,13 @@ type Detail = {
   quality: number;
 };
 
-type Error = {
-  code: string;
+type PackageError = {
+  unrecoverable: boolean;
+  tarballFile: string;
+  name: string;
   message: string;
+  stack: string;
+  caughtAt: string;
 };
 
 type Evaluation = {
