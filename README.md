@@ -30,7 +30,7 @@ npm install npms-sdk
 ### Basic Search
 
 ```typescript
-import NpmsIO from 'npms-sdk';
+import { NpmsIO } from 'npms-sdk';
 
 const npms = new NpmsIO();
 
@@ -57,7 +57,7 @@ const { results } = await client.executeSearchQuery('react', {
 ### Get Package Suggestions
 
 ```typescript
-const { flags, package, score, searchScore, highlight  } = await npms.searchSuggestions('react', { size: 5});
+const { flags, package, score, searchScore, highlight  } = await npms.searchSuggestions('react', { size: 5 });
 ```
 
 ### Get Package Information
