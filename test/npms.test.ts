@@ -243,7 +243,7 @@ describe('NpmsIO', () => {
         }) as Response,
     );
 
-    const packages = ['typescript', 'react'];
+    const packages = ['typescript', 'react'] as const;
     const result = await client.getMultiPackageInfo(packages);
     ok(result.typescript);
     ok(result.react);
@@ -264,7 +264,7 @@ describe('NpmsIO', () => {
         }) as Response,
     );
 
-    const packages = ['this-package-definitely-does-not-exist-12345'];
+    const packages = ['this-package-definitely-does-not-exist-12345'] as const;
     await rejects(() => client.getMultiPackageInfo(packages), /^NpmsIOError: Module not found$/);
   });
 });

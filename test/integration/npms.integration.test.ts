@@ -75,7 +75,7 @@ describe('NpmsIO (integration)', () => {
 
   describe('getMultiPackageInfo', () => {
     test('should get multiple package information', async () => {
-      const packages = ['typescript', 'react'];
+      const packages = ['typescript', 'react'] as const;
       const result = await client.getMultiPackageInfo(packages);
       ok(result.typescript);
       ok(result.react);
@@ -84,7 +84,7 @@ describe('NpmsIO (integration)', () => {
     });
 
     test('should handle partial failures gracefully', async () => {
-      const packages = ['typescript', 'this-package-definitely-does-not-exist-12345'];
+      const packages = ['typescript', 'this-package-definitely-does-not-exist-12345'] as const;
       const result = await client.getMultiPackageInfo(packages);
       ok(result.typescript);
       strictEqual(result.typescript.collected.metadata.name, 'typescript');

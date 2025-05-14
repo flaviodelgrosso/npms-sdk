@@ -1,7 +1,7 @@
 import { api } from './api.ts';
 import { NpmsIOError } from './error.ts';
 import type { ErrorResponse, RequestOptions } from './types/fetch.ts';
-import type { PackageInfo } from './types/package.ts';
+import type { MultiPackageInfo, PackageInfo } from './types/package.ts';
 import type {
   SearchOptions,
   SearchResult,
@@ -87,10 +87,10 @@ export default class NpmsIO {
    * @param packageNames The package names
    * @see https://api-docs.npms.io/#api-Package-GetMultiPackageInfo
    */
-  public getMultiPackageInfo<const T extends readonly string[]>(
-    packageNames: T,
-  ): Promise<Record<T[number], PackageInfo>> {
-    return this.request<Record<T[number], PackageInfo>>({
+  public getMultiPackageInfo<const TPackages extends readonly string[]>(
+    packageNames: TPackages,
+  ): Promise<MultiPackageInfo<TPackages>> {
+    return this.request<MultiPackageInfo<TPackages>>({
       method: 'POST',
       endpoint: api.multiPackageInfo(),
       data: packageNames,
