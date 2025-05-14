@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.2...v1.0.3) (2025-05-14)
+
+
+### Bug Fixes
+
+* update URL handling in request method to ensure proper encoding for query modifiers ([ceff56d](https://github.com/flaviodelgrosso/npms-sdk/commit/ceff56d3a0c2ae76ca078f61ba777688bef5f82b))
+
 ### [1.0.2](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.1...v1.0.2) (2025-05-14)
 
 

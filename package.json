@@ -1,6 +1,6 @@
 {
   "name": "npms-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A fully type-safe client library for the npms.io API.",
   "author": "Flavio Del Grosso",
   "license": "ISC",
