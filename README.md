@@ -32,18 +32,20 @@ npm install npms-sdk
 ```typescript
 import NpmsIO from 'npms-sdk';
 
-const client = new NpmsIO();
+const npms = new NpmsIO();
 
 // Search for packages
-const results = await client.executeSearchQuery('react');
-console.log(results.total); // Total number of matches
-console.log(results.results); // Array of package results
+const { results, total } = await npms.executeSearchQuery('react');
+console.log(`Total results: ${total}`);
+for (const result of results) {
+  console.log(result.package.description);
+}
 ```
 
 ### Search with Modifiers
 
 ```typescript
-const results = await client.executeSearchQuery('react', {
+const { results } = await client.executeSearchQuery('react', {
   size: 10,
   modifiers: {
     'not:': 'deprecated,insecure',
@@ -55,17 +57,18 @@ const results = await client.executeSearchQuery('react', {
 ### Get Package Suggestions
 
 ```typescript
-const suggestions = await client.searchSuggestions('react', { size: 5 });
+const { flags, package, score, searchScore, highlight  } = await npms.searchSuggestions('react', { size: 5});
 ```
 
 ### Get Package Information
 
 ```typescript
 // Get info for a single package
-const packageInfo = await client.getPackageInfo('react');
+const { analyzedAt, collected, evaluation, score } = await npms.getPackageInfo('react');
 
 // Get info for multiple packages
-const packagesInfo = await client.getMultiPackageInfo(['react', 'typescript']);
+const packages = await npms.getMultiPackageInfo(['react', 'typescript']);
+console.log(packages.typescript.score)
 ```
 
 ## Search Modifiers
