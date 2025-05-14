@@ -22,7 +22,7 @@ describe('NpmsIO (integration)', () => {
       const result = await client.executeSearchQuery('react', {
         size: 2,
         modifiers: {
-          'not:': 'deprecated,insecure',
+          not: 'deprecated,insecure',
         },
       });
       strictEqual(result.results.length, 2);
@@ -34,7 +34,7 @@ describe('NpmsIO (integration)', () => {
         size: 2,
         modifiers: {
           // @ts-expect-error
-          'invalid:': 'invalid-modifier',
+          invalid: 'invalid-modifier',
         },
       });
       strictEqual(result.results.length, 2);

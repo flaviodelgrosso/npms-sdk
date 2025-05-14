@@ -48,8 +48,8 @@ for (const result of results) {
 const { results } = await client.executeSearchQuery('react', {
   size: 10,
   modifiers: {
-    'not:': 'deprecated,insecure',
-    'author:': 'facebook'
+    not: 'deprecated,insecure',
+    author: 'facebook'
   }
 });
 ```

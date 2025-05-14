@@ -8,8 +8,8 @@ describe('buildSearchQueryWithModifiers', () => {
     const query = 'cross+spawn';
     const expectedQuery = 'cross+spawn+not:deprecated,insecure+scope:@types';
     const result = buildSearchQueryWithModifiers(query, {
-      'not:': 'deprecated,insecure',
-      'scope:': '@types',
+      not: 'deprecated,insecure',
+      scope: '@types',
     });
     strictEqual(result, expectedQuery);
   });
@@ -24,8 +24,8 @@ describe('buildSearchQueryWithModifiers', () => {
     const query = 'cross-spawn';
     const result = buildSearchQueryWithModifiers(query, {
       // @ts-expect-error: TypeScript will complains but we want to test invalid modifiers
-      'invalid:': 'value', // this is not in SearchQueryModifiers
-      'scope:': '@types',
+      invalid: 'value', // this is not in SearchQueryModifiers
+      scope: '@types',
     });
     strictEqual(result, 'cross-spawn+scope:@types');
   });

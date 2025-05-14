@@ -81,7 +81,7 @@ describe('NpmsIO', () => {
     const result = await client.executeSearchQuery('cross-spawn', {
       size: 1,
       modifiers: {
-        'not:': 'deprecated,insecure',
+        not: 'deprecated,insecure',
       },
     });
     strictEqual(result.results.length, 1);
