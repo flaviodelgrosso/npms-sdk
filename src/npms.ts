@@ -113,8 +113,16 @@ export default class NpmsIO {
       },
     };
 
-    const decodedUrl = decodeURIComponent(url.toString()); // This is needed to make npms.io API happy with the modifiers
-    const response = await fetch(decodedUrl, options);
+    let urlString = url.origin + url.pathname; // Base path; path segments like %2F remain encoded.
+    if (url.search) {
+      // url.search is the raw, percent-encoded query string (e.g., "?q=scope%3Atypes") or empty.
+      // This is needed to make npms.io API happy with the modifiers,
+      // as it expects special characters (e.g., ':') in query values to be unencoded.
+      // decodeURIComponent("?q=scope%3Atypes") results in "?q=scope:types".
+      urlString += decodeURIComponent(url.search);
+    }
+
+    const response = await fetch(urlString, options);
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -125,3 +133,11 @@ export default class NpmsIO {
     return responseData as T;
   }
 }
+
+const npms = new NpmsIO();
+await npms.getPackageInfo('@babel/parser'); // Example usage
+await npms.executeSearchQuery('react', {
+  modifiers: {
+    not: 'deprecated',
+  },
+});
