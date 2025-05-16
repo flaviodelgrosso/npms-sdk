@@ -1,4 +1,6 @@
 import { api } from './api.ts';
+import { NpmsIOError } from './error.ts';
+import type { ErrorResponse, RequestOptions } from './types/fetch.ts';
 import type { MultiPackageInfo, PackageInfo } from './types/package.ts';
 import type {
   SearchOptions,
@@ -7,9 +9,15 @@ import type {
   SuggestionsOptions,
 } from './types/search.ts';
 import { type SearchQueryModifiers, buildSearchQueryWithModifiers } from './utils/query.ts';
-import { request } from './utils/request.ts';
+
+const DEFAULT_API_URL = 'https://api.npms.io/v2';
 
 export default class NpmsIO {
+  private url: string;
+
+  constructor() {
+    this.url = DEFAULT_API_URL;
+  }
   /**
    * Perform a search query.
    * @param query Besides normal text, `q` supports qualifiers to express filters and other modifiers:
@@ -38,7 +46,7 @@ export default class NpmsIO {
     const { modifiers, ...searchOptions } = options || {};
     const queryWithModifiers = modifiers ? buildSearchQueryWithModifiers(query, modifiers) : query;
 
-    return request<SearchResult>({
+    return this.#__request<SearchResult>({
       method: 'GET',
       endpoint: api.search(),
       params: {
@@ -55,7 +63,7 @@ export default class NpmsIO {
    * @see https://api-docs.npms.io/#api-Search-SearchSuggestions
    */
   public searchSuggestions(query: string, options?: SuggestionsOptions): Promise<SuggestionResult> {
-    return request<SuggestionResult>({
+    return this.#__request<SuggestionResult>({
       method: 'GET',
       endpoint: api.suggestions(),
       params: {
@@ -71,7 +79,7 @@ export default class NpmsIO {
    * @see https://api-docs.npms.io/#api-Package-GetPackageInfo
    */
   public getPackageInfo(packageName: string): Promise<PackageInfo> {
-    return request<PackageInfo>({
+    return this.#__request<PackageInfo>({
       method: 'GET',
       endpoint: api.packageInfo(packageName),
     });
@@ -85,10 +93,46 @@ export default class NpmsIO {
   public getMultiPackageInfo<const TPackages extends readonly string[]>(
     packageNames: TPackages,
   ): Promise<MultiPackageInfo<TPackages>> {
-    return request<MultiPackageInfo<TPackages>>({
+    return this.#__request<MultiPackageInfo<TPackages>>({
       method: 'POST',
       endpoint: api.multiPackageInfo(),
       data: packageNames,
     });
+  }
+
+  async #__request<T>({ method, endpoint, params, data }: RequestOptions): Promise<T> {
+    const url = new URL(`${this.url}${endpoint}`);
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        url.searchParams.append(key, String(value));
+      }
+    }
+
+    const options: RequestInit = {
+      method,
+      body: data ? JSON.stringify(data) : undefined,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    let urlString = url.origin + url.pathname; // Base path; path segments like %2F remain encoded.
+    if (url.search) {
+      // url.search is the raw, percent-encoded query string (e.g., "?q=scope%3Atypes") or empty.
+      // This is needed to make npms.io API happy with the modifiers,
+      // as it expects special characters (e.g., ':') in query values to be unencoded.
+      // decodeURIComponent("?q=scope%3Atypes") results in "?q=scope:types".
+      urlString += decodeURIComponent(url.search);
+    }
+
+    const response = await fetch(urlString, options);
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const error = responseData as ErrorResponse;
+      throw new NpmsIOError(error.message, error.code);
+    }
+
+    return responseData as T;
   }
 }
