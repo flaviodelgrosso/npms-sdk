@@ -4,15 +4,17 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.5](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.4...v1.0.5) (2025-05-16)
 
-
 ### Bug Fixes
 
 * set default value for NpmsIOOptions in constructor ([52a4c52](https://github.com/flaviodelgrosso/npms-sdk/commit/52a4c52840c3a66d7ca7f9e25021ad80aab8a12d))
 
+### Features
+
+* enhance NpmsIO constructor to accept signal and headers options ([0212e33](https://github.com/flaviodelgrosso/npms-sdk/commit/0212e3342baecbb69fca81f2ee56ac318afde4b1))
+
 ### [1.0.4](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.3...v1.0.4) (2025-05-14)
 
 ### [1.0.3](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.2...v1.0.3) (2025-05-14)
-
 
 ### Bug Fixes
 
@@ -20,14 +22,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.2](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.1...v1.0.2) (2025-05-14)
 
-
 ### Features
 
 * **types:** add MultiPackageInfo generic type ([b0becc4](https://github.com/flaviodelgrosso/npms-sdk/commit/b0becc46dd8a65858136ead8c6e92f95930ae972))
 * **types:** export additional types from search and package modules ([78f3861](https://github.com/flaviodelgrosso/npms-sdk/commit/78f386138d29a6b3dd58f9307a1a84c936e61784))
 
 ### [1.0.1](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.0...v1.0.1) (2025-05-14)
-
 
 ### Bug Fixes
 
