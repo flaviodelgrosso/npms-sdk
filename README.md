@@ -1,4 +1,4 @@
-# Npms.io TypeScript Client
+# npms-sdk
 
 [![NPM
 version](https://img.shields.io/npm/v/npms-sdk.svg?style=flat)](https://www.npmjs.com/package/npms-sdk)
