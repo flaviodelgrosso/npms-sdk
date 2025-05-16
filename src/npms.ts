@@ -12,12 +12,25 @@ import { type SearchQueryModifiers, buildSearchQueryWithModifiers } from './util
 
 const DEFAULT_API_URL = 'https://api.npms.io/v2';
 
+interface NpmsIOOptions extends Pick<RequestInit, 'signal' | 'headers'> {
+  /**
+   * The base URL of the NPMS API.
+   * @default 'https://api.npms.io/v2'
+   */
+  url?: string;
+}
+
 export default class NpmsIO {
   private url: string;
+  private signal?: AbortSignal | null;
+  private headers?: HeadersInit;
 
-  constructor() {
-    this.url = DEFAULT_API_URL;
+  constructor({ url, signal, headers }: NpmsIOOptions) {
+    this.url = url || DEFAULT_API_URL;
+    this.signal = signal;
+    this.headers = headers;
   }
+
   /**
    * Perform a search query.
    * @param query Besides normal text, `q` supports qualifiers to express filters and other modifiers:
@@ -35,7 +48,7 @@ export default class NpmsIO {
    * - `score-effect:14` Set the effect that package scores have for the final search score, defaults to `15.3`
    * - `quality-weight:1` Set the weight that quality has for the each package score, defaults to `1.95`
    * - `popularity-weight:1` Set the weight that popularity has for the each package score, defaults to `3.3`
-   * - `maintenance-weight:1` Set the weight that the quality has for the each package score, defaults to `2.05`
+   * - `maintenance-weight:1` Set the weight that quality has for the each package score, defaults to `2.05`
    * @param options Additional search options
    * @see https://api-docs.npms.io/#api-Search-ExecuteSearchQuery
    */
@@ -90,7 +103,7 @@ export default class NpmsIO {
    * @param packageNames The package names
    * @see https://api-docs.npms.io/#api-Package-GetMultiPackageInfo
    */
-  public getMultiPackageInfo<const TPackages extends readonly string[]>(
+  public getMultiPackageInfo<const TPackages extends ReadonlyArray<string>>(
     packageNames: TPackages,
   ): Promise<MultiPackageInfo<TPackages>> {
     return this.#__request<MultiPackageInfo<TPackages>>({
@@ -111,8 +124,10 @@ export default class NpmsIO {
     const options: RequestInit = {
       method,
       body: data ? JSON.stringify(data) : undefined,
+      signal: this.signal,
       headers: {
         'Content-Type': 'application/json',
+        ...this.headers,
       },
     };
 
