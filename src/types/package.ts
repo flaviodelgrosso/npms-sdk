@@ -11,7 +11,7 @@ export type PackageInfo = {
   error?: PackageError;
 };
 
-export type MultiPackageInfo<T extends readonly string[]> = Record<T[number], PackageInfo>;
+export type MultiPackageInfo<T extends ReadonlyArray<string>> = Record<T[number], PackageInfo>;
 
 type Badge = {
   info: Info;
