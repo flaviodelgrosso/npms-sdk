@@ -25,7 +25,7 @@ export default class NpmsIO {
   private signal?: AbortSignal | null;
   private headers?: HeadersInit;
 
-  constructor({ url, signal, headers }: NpmsIOOptions) {
+  constructor({ url, signal, headers }: NpmsIOOptions = {}) {
     this.url = url || DEFAULT_API_URL;
     this.signal = signal;
     this.headers = headers;
