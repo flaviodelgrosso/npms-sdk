@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.4...v1.0.5) (2025-05-16)
+
+
+### Bug Fixes
+
+* set default value for NpmsIOOptions in constructor ([52a4c52](https://github.com/flaviodelgrosso/npms-sdk/commit/52a4c52840c3a66d7ca7f9e25021ad80aab8a12d))
+
 ### [1.0.4](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.3...v1.0.4) (2025-05-14)
 
 ### [1.0.3](https://github.com/flaviodelgrosso/npms-sdk/compare/v1.0.2...v1.0.3) (2025-05-14)
